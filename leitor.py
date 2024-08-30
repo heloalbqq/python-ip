@@ -6,7 +6,7 @@ def ler_cartao(nome_arquivo):
     for linha in linhas:
         linha = linha.strip()
         if len(linha) == 16:
-            binario = ''.join('1' if c == 'X' else '@' for c in linha)
+            binario = ''.join('1' if c == 'X' else 'O' for c in linha)
             instrucoes.append (binario)
     return instrucoes
 
