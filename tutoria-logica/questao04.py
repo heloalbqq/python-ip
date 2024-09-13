@@ -21,3 +21,5 @@ condicoes = [(True, True, False), (True, False, False), (False, True, False), (F
 
 for A, B, C in condicoes:
     print(f"{A}, {B}, {C} = {verd(A, B, C)}, {false(A, B, C)}")
+
+    #aa
