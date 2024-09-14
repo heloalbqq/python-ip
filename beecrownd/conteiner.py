@@ -1,21 +1,28 @@
+def calcular_max_containers(A, B, C, X, Y, Z):
+    max_containers = 0
+ 
+    orientacoes = [
+        (A, B, C),
+        (A, C, B),
+        (B, A, C),
+        (B, C, A),
+        (C, A, B),
+        (C, B, A)
+    ]
 
-A, B, C = map(int, input().split())
-X, Y, Z = map(int, input().split())
+    for largura, comprimento, altura in orientacoes:
+        if altura <= Z:
+            num_largura = X // largura
+            num_comprimento = Y // comprimento
+            num_altura = Z // altura
 
+            containers = num_largura * num_comprimento * num_altura
 
-def max_containers(container_width, container_length, container_height, ship_width, ship_length, max_height):
-    if container_height > max_height:
-        return 0
-    max_width_fit = ship_width // container_width
-    max_length_fit = ship_length // container_length
-    return max_width_fit * max_length_fit
+            max_containers = max(max_containers, containers)
+    
+    return max_containers
 
-result = 0
-result = max(result, max_containers(A, B, C, X, Y, Z))
-result = max(result, max_containers(A, C, B, X, Y, Z))
-result = max(result, max_containers(B, A, C, X, Y, Z))
-result = max(result, max_containers(B, C, A, X, Y, Z))
-result = max(result, max_containers(C, A, B, X, Y, Z))
-result = max(result, max_containers(C, B, A, X, Y, Z))
+A, B, C = map(int, input().strip().split())
+X, Y, Z = map(int, input().strip().split())
 
-print(result)
+print(calcular_max_containers(A, B, C, X, Y, Z))
