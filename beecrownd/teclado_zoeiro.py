@@ -1,31 +1,31 @@
-def main():
+
+def converter_frases(n, m, trocas, frases):
+    mapeamento = {}
+    for troca in trocas:
+        original, substituto = troca
+        mapeamento[original] = substituto
+
+    frases_convertidas = []
+    for frase in frases:
+        frase_convertida = ''.join(mapeamento.get(char, char) for char in frase)
+        frases_convertidas.append(frase_convertida)
+
+    return frases_convertidas
+
+def processar_entrada():
     import sys
     input = sys.stdin.read
-    data = input().split('\n')
-
-    first_line = data[0].split()
-    N = int(first_line[0])
-    M = int(first_line[1])
- 
-    key_map = {}
-
-    index = 1
-    for _ in range(N):
-        E, S = data[index].split()
-        key_map[E] = S
-        index += 1
-
-    reverse_key_map = {v: k for k, v in key_map.items()}
-
-    results = []
-    for _ in range(M):
-        phrase = data[index]
-        corrected_phrase = ''.join(reverse_key_map.get(c, c) for c in phrase)
-        results.append(corrected_phrase)
-        index += 1
-
-    for result in results:
-        print(result)
-
+    dados = input().strip().split('\n')
+    
+    n, m = map(int, dados[0].split())
+    
+    trocas = [tuple(linha.split()) for linha in dados[1:n+1]]
+    
+    frases = dados[n+1:n+1+m]
+    
+    frases_convertidas = converter_frases(n, m, trocas, frases)
+    for frase in frases_convertidas:
+        print(frase)
+        
 if __name__ == "__main__":
-    main()
+    processar_entrada()
