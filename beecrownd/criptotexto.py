@@ -1,21 +1,14 @@
-def extrair_maiusculas(mensagem):
-    return ''.join([char for char in mensagem if char.isupper()])
-
-def main():
-    import sys
-    input = sys.stdin.read
-    dados = input().splitlines()
-    
-    C = int(dados[0])
-    
-    resultados = []
-    for i in range(1, C + 1):
-        mensagem = dados[i]
-        resultado = extrair_maiusculas(mensagem)
-        resultados.append(resultado)
-    
-    for resultado in resultados:
-        print(resultado)
-
-if __name__ == "__main__":
-    main()
+teste = int(input())
+for i in range(0,teste):
+	txt = input()
+	mensagem = []
+	for c in txt:
+		if c.islower():
+			mensagem.append(c)
+		else:
+			continue
+		
+	for c in mensagem[::-1]:
+		print(c,end="")
+		
+	print()

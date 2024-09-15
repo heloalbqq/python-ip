@@ -1,31 +1,26 @@
+def substituir_letra(texto, a, b):
+    resultado = ''
+    for letra in texto:
+        if letra == a:
+            resultado += b
+        elif letra == b:
+            resultado += a
+        else:
+            resultado += letra
+    return resultado
 
-def converter_frases(n, m, trocas, frases):
-    mapeamento = {}
-    for troca in trocas:
-        original, substituto = troca
-        mapeamento[original] = substituto
+letras = []
+frases = []
+n, m = list(map(int, input().split()))
+for _ in range(n):
+    letras.append(input('').split())
 
-    frases_convertidas = []
-    for frase in frases:
-        frase_convertida = ''.join(mapeamento.get(char, char) for char in frase)
-        frases_convertidas.append(frase_convertida)
 
-    return frases_convertidas
+for _ in range(m):
+    frases.append(input(''))
 
-def processar_entrada():
-    import sys
-    input = sys.stdin.read
-    dados = input().strip().split('\n')
-    
-    n, m = map(int, dados[0].split())
-    
-    trocas = [tuple(linha.split()) for linha in dados[1:n+1]]
-    
-    frases = dados[n+1:n+1+m]
-    
-    frases_convertidas = converter_frases(n, m, trocas, frases)
-    for frase in frases_convertidas:
-        print(frase)
-        
-if __name__ == "__main__":
-    processar_entrada()
+
+for frase in frases:
+    for par in letras:
+        frase = substituir_letra(frase, par[0], par[1])
+    print(frase)
